@@ -1,0 +1,15 @@
+Ghi chú cho người thuyết trình
+
+1. Slide 9
+   - Không cần nói về lỗi chữ "BILP-2/BLIP-2" nếu không ai hỏi.
+   - Tập trung giải thích Q-Former là cầu nối giữa đặc trưng ảnh và mô hình ngôn ngữ.
+   - Phần "Phản biện" trên slide dùng để nói rằng paper chưa mô tả đủ rõ LLMI-CDP kế thừa và chỉnh sửa BLIP-2/VisualGLM cụ thể ra sao.
+
+2. Slide 21
+   - Fig. 7 rất cao và nhiều chữ, không nên đọc hết từng dòng.
+   - Khi trình bày, chỉ cần chỉ vào vùng LLMI-CDP, sau đó so sánh nhanh với 1-2 baseline tiêu biểu như VisualGLM hoặc Ziya-Visual.
+   - Ý chính: LLMI-CDP đưa ra khuyến nghị cụ thể hơn, nhưng đây vẫn chỉ là ví dụ định tính nên cần đánh giá rộng hơn.
+
+3. Các khung đỏ "Phản biện"
+   - Đây là nhận xét phân tích của bài seminar, không phải nội dung tác giả khẳng định trực tiếp.
+   - Nên dùng các khung này để mở câu hỏi thảo luận sau khi đã trình bày xong nội dung chính của paper.
