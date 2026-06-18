@@ -30,7 +30,7 @@
     <div class="author"><span class="name">Yiqun Wang</span><span class="affil">Beijing Information Science & Technology University</span></div>
     <div class="author"><span class="name">Fahai Wang</span><span class="affil">BISTU / BRCITA</span></div>
     <div class="author"><span class="name">Wenbai Chen</span><span class="affil">Corresponding author</span></div>
-    <div class="author"><span class="name">C. Zhao · Z. Pan et al.</span><span class="affil">Smart agriculture research</span></div>
+    <div class="author"><span class="name">C. Zhao · Z. Pan et al.</span><span class="affil">Nghiên cứu nông nghiệp thông minh</span></div>
   </div>
 </div>
 </div>
@@ -38,14 +38,14 @@
 <div class="slide" id="s2">
 <div class="pad">
   <div class="slide-header">
-    <h2>Overview</h2>
-    <span class="section-tag">overview</span>
+  <h2>Tổng quan</h2>
+    <span class="section-tag">tổng quan</span>
   </div>
   <ul class="agenda-list">
     <li><div><div class="ag-title">Động lực nghiên cứu</div><div class="ag-desc">Vì sao MLLM tổng quát dễ sai khi phải nhận diện bệnh/sâu hại và đưa ra khuyến nghị nông nghiệp cụ thể.</div></div></li>
-    <li><div><div class="ag-title">Nghiên cứu liên quan</div><div class="ag-desc">LLM, vision-language model, BLIP-2/Q-Former và fine-tuning tiết kiệm tham số bằng LoRA.</div></div></li>
-    <li><div><div class="ag-title">Mô hình LLMI-CDP</div><div class="ag-desc">Năm thành phần: image-text matching, image encoder, text encoder, Q-Former, LoRA fine-tuning và answer testing.</div></div></li>
-    <li><div><div class="ag-title">Dữ liệu và thiết lập thực nghiệm</div><div class="ag-desc">Dataset tiếng Trung gồm 2,498 ảnh màu, 141 loại bệnh/sâu hại, 15 cây trồng và 32 nhóm sâu hại.</div></div></li>
+    <li><div><div class="ag-title">Nghiên cứu liên quan</div><div class="ag-desc">LLM, mô hình ảnh-ngôn ngữ, BLIP-2/Q-Former và tinh chỉnh tiết kiệm tham số bằng LoRA.</div></div></li>
+    <li><div><div class="ag-title">Mô hình LLMI-CDP</div><div class="ag-desc">Năm thành phần: ghép ảnh-văn bản, mã hóa ảnh, mã hóa văn bản, Q-Former, tinh chỉnh LoRA và kiểm thử trả lời.</div></div></li>
+    <li><div><div class="ag-title">Dữ liệu và thiết lập thực nghiệm</div><div class="ag-desc">Bộ dữ liệu tiếng Trung gồm 2,498 ảnh màu, 141 loại bệnh/sâu hại, 15 cây trồng và 32 nhóm sâu hại.</div></div></li>
     <li><div><div class="ag-title">Kết quả</div><div class="ag-desc">So sánh với VisualGLM, Qwen-VL, VisCPM, MiniGPT4, Ziya-Visual trên nhận diện và hỏi-đáp.</div></div></li>
     <li><div><div class="ag-title">Thảo luận phản biện</div><div class="ag-desc">Điểm mạnh, giới hạn đánh giá, rủi ro dữ liệu, độ trễ suy luận và hướng cải tiến.</div></div></li>
   </ul>
@@ -65,7 +65,7 @@
 <div class="pad">
   <div class="slide-header">
     <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Vì sao nhận diện bệnh cây bằng MLLM khó?</h2>
-    <span class="section-tag">§1 · motivation</span>
+    <span class="section-tag">§1 · động lực</span>
   </div>
   <div class="problem-grid">
     <div class="query-panel">
@@ -92,9 +92,9 @@
         <h3>Khoảng trống mà bài báo nhắm tới</h3>
         <div class="gap-row"><span>CNN/MobileNet</span><p>Nhận diện ảnh tốt trong bài toán hẹp, nhưng không mô tả triệu chứng và không sinh khuyến nghị hành động.</p></div>
         <div class="gap-row"><span>MLLM tổng quát</span><p>Có khả năng đối thoại, nhưng thường trả lời chung chung, nhầm bệnh trong cùng cây hoặc thiếu chi tiết nông học.</p></div>
-        <div class="gap-row"><span>Triển khai thực tế</span><p>Nông nghiệp cần mô hình vừa hiểu ảnh, vừa dùng được bằng ngôn ngữ tự nhiên, vừa tiết kiệm chi phí fine-tuning.</p></div>
+        <div class="gap-row"><span>Triển khai thực tế</span><p>Nông nghiệp cần mô hình vừa hiểu ảnh, vừa dùng được bằng ngôn ngữ tự nhiên, vừa tiết kiệm chi phí tinh chỉnh.</p></div>
       </div>
-      <div class="takeaway-strip"><div class="mini-label">Vì vậy</div><p><strong>LLMI-CDP</strong> được thiết kế như một trợ lý multimodal chuyên biệt cho bệnh và sâu hại cây trồng, thay vì một bộ phân loại ảnh đơn lẻ.</p></div>
+      <div class="takeaway-strip"><div class="mini-label">Vì vậy</div><p><strong>LLMI-CDP</strong> được thiết kế như một trợ lý đa phương thức chuyên biệt cho bệnh và sâu hại cây trồng, thay vì một bộ phân loại ảnh đơn lẻ.</p></div>
     </div>
   </div>
 </div>
@@ -105,25 +105,25 @@
 <div class="pad">
   <div class="slide-header">
     <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Ba đóng góp chính của LLMI-CDP</h2>
-    <span class="section-tag">§1 · contributions</span>
+    <span class="section-tag">§1 · đóng góp</span>
   </div>
   <div class="contrib-grid">
     <div class="contrib-card">
       <div class="contrib-type">Đóng góp 01 · Mô hình</div>
       <div class="contrib-title">MLLM cho nhận diện bệnh và sâu hại cây trồng</div>
       <p>Đề xuất LLMI-CDP dựa trên VisualGLM, mở rộng ChatGLM sang đầu vào ảnh-văn bản để nhận diện và đối thoại về bệnh cây.</p>
-      <div class="contrib-meta"><span>Ý nghĩa</span><p>Kết hợp nhận diện ảnh với tư vấn phòng trừ, phù hợp nhu cầu smart agriculture.</p></div>
+      <div class="contrib-meta"><span>Ý nghĩa</span><p>Kết hợp nhận diện ảnh với tư vấn phòng trừ, phù hợp nhu cầu nông nghiệp thông minh.</p></div>
     </div>
     <div class="contrib-card">
       <div class="contrib-type">Đóng góp 02 · Kỹ thuật</div>
       <div class="contrib-title">Q-Former cho căn chỉnh ảnh-ngôn ngữ</div>
       <p>Dùng Q-Former để chọn đặc trưng thị giác liên quan nhất và ánh xạ vào không gian ngữ nghĩa của mô hình ngôn ngữ.</p>
-      <div class="contrib-meta"><span>Ý nghĩa</span><p>Giảm khoảng cách modality, hỗ trợ hiểu các đặc trưng bệnh tinh như màu, hình dạng và vị trí vết bệnh.</p></div>
+      <div class="contrib-meta"><span>Ý nghĩa</span><p>Giảm khoảng cách giữa ảnh và ngôn ngữ, hỗ trợ hiểu các đặc trưng bệnh tinh như màu, hình dạng và vị trí vết bệnh.</p></div>
     </div>
     <div class="contrib-card">
-      <div class="contrib-type">Đóng góp 03 · Fine-tuning</div>
+      <div class="contrib-type">Đóng góp 03 · Tinh chỉnh</div>
       <div class="contrib-title">LoRA để cập nhật ít tham số</div>
-      <p>Đóng băng phần lớn tham số của image encoder và language model, chỉ tinh chỉnh LoRA và Q-Former trên dữ liệu nông nghiệp.</p>
+      <p>Đóng băng phần lớn tham số của bộ mã hóa ảnh và mô hình ngôn ngữ, chỉ tinh chỉnh LoRA và Q-Former trên dữ liệu nông nghiệp.</p>
       <div class="contrib-meta"><span>Ý nghĩa</span><p>Tiết kiệm GPU và thời gian, nhưng vẫn cải thiện đáng kể hiệu năng trên miền chuyên biệt.</p></div>
     </div>
   </div>
@@ -136,7 +136,7 @@
 <div class="part-slide">
   <div class="part-num">PHẦN 02 / 06</div>
   <h1>Nghiên cứu liên quan</h1>
-  <p class="part-desc">Bài báo đứng tại giao điểm của language model, vision-language model, BLIP-2/Q-Former và fine-tuning tiết kiệm tham số.</p>
+  <p class="part-desc">Bài báo đứng tại giao điểm của mô hình ngôn ngữ, mô hình ảnh-ngôn ngữ, BLIP-2/Q-Former và tinh chỉnh tiết kiệm tham số.</p>
 </div>
 </div>
 
@@ -144,29 +144,29 @@
 <div class="pad">
   <div class="slide-header">
     <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Bản đồ nghiên cứu liên quan</h2>
-    <span class="section-tag">§2 · related work</span>
+    <span class="section-tag">§2 · nghiên cứu liên quan</span>
   </div>
   <div class="related-grid">
     <div class="related-card">
       <div class="related-type">Nhánh 01</div>
-      <div class="related-title">Large Language Models</div>
+      <div class="related-title">Mô hình ngôn ngữ lớn</div>
       <div class="related-row"><span>Đại diện</span><p>ChatGPT, GPT-4, LLaMA, PaLM, ChatGLM và các mô hình fine-tune miền hẹp như ChatLaw, DoctorGLM, BenTsao.</p></div>
       <div class="related-row"><span>Điểm mạnh</span><p>Sinh ngôn ngữ, suy luận và đối thoại tốt trong miền mở.</p></div>
       <div class="related-gap"><span>Khoảng trống</span><p>Không trực tiếp hiểu ảnh và thường thiếu tri thức nông nghiệp chuyên sâu.</p></div>
     </div>
     <div class="related-card">
       <div class="related-type">Nhánh 02</div>
-      <div class="related-title">Vision-Language Models</div>
-      <div class="related-row"><span>Đại diện</span><p>MiniGPT-4, LLaVA, Qwen-VL, VisCPM, Ziya-Visual và các mô hình dùng visual encoder nối với LLM.</p></div>
+      <div class="related-title">Mô hình ảnh-ngôn ngữ</div>
+      <div class="related-row"><span>Đại diện</span><p>MiniGPT-4, LLaVA, Qwen-VL, VisCPM, Ziya-Visual và các mô hình dùng bộ mã hóa ảnh nối với LLM.</p></div>
       <div class="related-row"><span>Điểm mạnh</span><p>Tiếp nhận ảnh + câu hỏi, mô tả ảnh và trả lời theo instruction.</p></div>
       <div class="related-gap"><span>Khoảng trống</span><p>Mô hình tổng quát chưa được fine-tune đủ cho bệnh cây, nên dễ nhầm triệu chứng chuyên biệt.</p></div>
     </div>
     <div class="related-card">
       <div class="related-type">Nhánh 03</div>
-      <div class="related-title">Efficient Multimodal Adaptation</div>
-      <div class="related-row"><span>Đại diện</span><p>BLIP-2/Q-Former để nối visual encoder với LLM; LoRA để fine-tune bằng low-rank matrices.</p></div>
-      <div class="related-row"><span>Điểm mạnh</span><p>Giảm số tham số trainable và chi phí huấn luyện so với full fine-tuning.</p></div>
-      <div class="related-gap"><span>Câu hỏi</span><p>Liệu adaptation tiết kiệm tham số có đủ cho một miền chẩn đoán nông nghiệp phức tạp?</p></div>
+      <div class="related-title">Điều chỉnh đa phương thức tiết kiệm</div>
+      <div class="related-row"><span>Đại diện</span><p>BLIP-2/Q-Former để nối bộ mã hóa ảnh với LLM; LoRA để tinh chỉnh bằng các ma trận hạng thấp.</p></div>
+      <div class="related-row"><span>Điểm mạnh</span><p>Giảm số tham số cần huấn luyện và chi phí huấn luyện so với tinh chỉnh toàn bộ mô hình.</p></div>
+      <div class="related-gap"><span>Câu hỏi</span><p>Liệu cách điều chỉnh tiết kiệm tham số có đủ cho một miền chẩn đoán nông nghiệp phức tạp?</p></div>
     </div>
   </div>
   <div class="hbox"><div class="hbox-label">Vị trí của LLMI-CDP</div><p>LLMI-CDP lấy VisualGLM làm nền, dùng Q-Former để căn chỉnh ảnh-văn bản và LoRA để đưa tri thức bệnh cây vào mô hình với chi phí thấp.</p></div>
@@ -178,7 +178,7 @@
 <div class="part-slide">
   <div class="part-num">PHẦN 03 / 06</div>
   <h1>Mô hình LLMI-CDP</h1>
-  <p class="part-desc">Từ BLIP-2/Q-Former đến kiến trúc năm thành phần và quy trình LoRA fine-tuning hai pha.</p>
+  <p class="part-desc">Từ BLIP-2/Q-Former đến kiến trúc năm thành phần và quy trình tinh chỉnh LoRA hai pha.</p>
 </div>
 </div>
 
@@ -186,16 +186,16 @@
 <div class="pad">
   <div class="slide-header">
     <h2>BLIP-2 và vai trò của Q-Former</h2>
-    <span class="section-tag">background</span>
+    <span class="section-tag">nền tảng</span>
   </div>
   <div class="image-layout">
     <div>
       <div class="figure-stage" style="height:420px"><img src="assets/Fig1.png" alt="Overview of BLIP-2 framework"/></div>
-      <div class="figure-caption">Fig. 1 trong bài báo: BLIP-2 dùng Q-Former làm cầu nối nhẹ giữa frozen image encoder và frozen language model.</div>
+      <div class="figure-caption">Fig. 1 trong bài báo: BLIP-2 dùng Q-Former làm cầu nối nhẹ giữa bộ mã hóa ảnh đóng băng và mô hình ngôn ngữ đóng băng.</div>
     </div>
     <div class="vstack">
-      <div class="card gold"><h3>Vấn đề</h3><p>Image encoder tạo đặc trưng thị giác, còn LLM xử lý token ngôn ngữ. Nếu nối trực tiếp, mô hình khó chọn đúng thông tin ảnh liên quan đến câu hỏi.</p></div>
-      <div class="card teal"><h3>Giải pháp Q-Former</h3><p>Dùng learnable query vectors và cross-attention để trích đặc trưng ảnh phù hợp với ngữ nghĩa văn bản.</p></div>
+      <div class="card gold"><h3>Vấn đề</h3><p>Bộ mã hóa ảnh tạo đặc trưng thị giác, còn LLM xử lý các token ngôn ngữ. Nếu nối trực tiếp, mô hình khó chọn đúng thông tin ảnh liên quan đến câu hỏi.</p></div>
+      <div class="card teal"><h3>Giải pháp Q-Former</h3><p>Dùng các vector truy vấn học được và cơ chế chú ý chéo để trích đặc trưng ảnh phù hợp với ngữ nghĩa văn bản.</p></div>
       <div class="card navy"><h3>Vì sao hợp với bệnh cây?</h3><p>Cần chú ý đến chi tiết nhỏ như đốm bệnh, mép lá, màu sắc bất thường và mối quan hệ giữa triệu chứng với tên bệnh.</p></div>
       <div class="rbox"><div class="rbox-label">Phản biện</div><p>Bài báo dùng BLIP-2/Q-Former làm nền tảng lý thuyết, nhưng chưa mô tả thật rõ LLMI-CDP kế thừa phần nào, thay đổi phần nào và phần nào được huấn luyện lại trên dữ liệu bệnh cây.</p></div>
     </div>
@@ -208,24 +208,24 @@
 <div class="pad">
   <div class="slide-header">
     <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Kiến trúc LLMI-CDP</h2>
-    <span class="section-tag">model framework</span>
+    <span class="section-tag">kiến trúc mô hình</span>
   </div>
   <div class="pipeline-layout">
     <div class="vstack">
       <div class="card flat"><h3>Năm thành phần chính</h3>
         <ol class="num-list">
-          <li><p><strong>Image-text matching:</strong> học xem cặp ảnh-văn bản có khớp hay không.</p></li>
-          <li><p><strong>Image encoding:</strong> biến ảnh thành ma trận đặc trưng thị giác.</p></li>
-          <li><p><strong>Text encoding:</strong> biến mô tả/câu hỏi thành embedding ngữ nghĩa.</p></li>
-          <li><p><strong>LoRA fine-tuning:</strong> cập nhật các low-rank matrices thay vì full model.</p></li>
-          <li><p><strong>Answer testing:</strong> sinh câu trả lời từ ảnh + câu hỏi sau khi căn chỉnh modality.</p></li>
+          <li><p><strong>Ghép ảnh-văn bản:</strong> học xem cặp ảnh-văn bản có khớp hay không.</p></li>
+          <li><p><strong>Mã hóa ảnh:</strong> biến ảnh thành ma trận đặc trưng thị giác.</p></li>
+          <li><p><strong>Mã hóa văn bản:</strong> biến mô tả/câu hỏi thành biểu diễn ngữ nghĩa.</p></li>
+          <li><p><strong>Tinh chỉnh LoRA:</strong> cập nhật các ma trận hạng thấp thay vì toàn bộ mô hình.</p></li>
+          <li><p><strong>Kiểm thử trả lời:</strong> sinh câu trả lời từ ảnh + câu hỏi sau khi căn chỉnh ảnh-ngôn ngữ.</p></li>
         </ol>
       </div>
-      <div class="takeaway-strip"><div class="mini-label">Cách đọc</div><p>LLMI-CDP không thay toàn bộ backbone. Mô hình giữ lại năng lực tổng quát của VisualGLM/ChatGLM, rồi thêm adaptation chuyên biệt cho bệnh cây.</p></div>
+      <div class="takeaway-strip"><div class="mini-label">Cách đọc</div><p>LLMI-CDP không thay toàn bộ mô hình nền. Mô hình giữ lại năng lực tổng quát của VisualGLM/ChatGLM, rồi thêm phần điều chỉnh chuyên biệt cho bệnh cây.</p></div>
     </div>
     <div>
       <div class="figure-stage" style="height:470px"><img src="assets/Fig2.png" alt="Architecture of LLMI-CDP model"/></div>
-      <div class="figure-caption">Fig. 2: kiến trúc LLMI-CDP với image encoder, text encoder, Q-Former, LoRA và language model.</div>
+      <div class="figure-caption">Fig. 2: kiến trúc LLMI-CDP với bộ mã hóa ảnh, bộ mã hóa văn bản, Q-Former, LoRA và mô hình ngôn ngữ.</div>
     </div>
   </div>
 </div>
@@ -235,19 +235,19 @@
 <div class="slide" id="s11">
 <div class="pad">
   <div class="slide-header">
-    <h2>LoRA fine-tuning: cập nhật ít tham số</h2>
+    <h2>Tinh chỉnh LoRA: cập nhật ít tham số</h2>
     <span class="section-tag">LoRA</span>
   </div>
   <div class="image-layout rev">
     <div class="vstack">
       <div class="eq-box">W = W<sub>pm</sub> + tW<sub>LoRA</sub><div class="desc">Trọng số sau fine-tune bằng trọng số frozen cộng cập nhật low-rank.</div></div>
-      <div class="card gold"><h3>Pha 1 · Học ảnh</h3><p>Ảnh được encode thành feature vectors, sau đó LoRA tối ưu chất lượng đặc trưng mà không retrain toàn bộ image encoder.</p></div>
+      <div class="card gold"><h3>Pha 1 · Học ảnh</h3><p>Ảnh được mã hóa thành các vector đặc trưng, sau đó LoRA tối ưu chất lượng đặc trưng mà không huấn luyện lại toàn bộ bộ mã hóa ảnh.</p></div>
       <div class="card teal"><h3>Pha 2 · LoRA trên ChatGLM</h3><p>LoRA được dùng để đưa tri thức chuyên ngành nông nghiệp vào ChatGLM, giúp mô hình hiểu ngữ nghĩa bệnh/sâu hại cây trồng, trả lời câu hỏi và đề xuất phác đồ phòng trừ phù hợp.</p></div>
       <div class="card red"><h3>Lý do chọn LoRA</h3><p>Bài báo cho rằng Prefix Tuning và P-Tuning v2 không đạt kết quả tốt trong thiết lập này; LoRA ổn định và tiết kiệm hơn.</p></div>
     </div>
     <div>
-      <div class="figure-stage" style="height:410px"><img src="assets/Fig3.png" alt="LoRA fine-tuning flow chart"/></div>
-      <div class="figure-caption">Fig. 3: quy trình LoRA fine-tuning hai pha cho dữ liệu ảnh-văn bản.</div>
+      <div class="figure-stage" style="height:410px"><img src="assets/Fig3.png" alt="Sơ đồ tinh chỉnh LoRA"/></div>
+      <div class="figure-caption">Fig. 3: quy trình tinh chỉnh LoRA hai pha cho dữ liệu ảnh-văn bản.</div>
     </div>
   </div>
 </div>
@@ -257,8 +257,8 @@
 <div class="slide" id="s12">
 <div class="pad">
   <div class="slide-header">
-    <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Luồng xử lý trong answer testing</h2>
-    <span class="section-tag">inference</span>
+    <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Luồng xử lý trong kiểm thử trả lời</h2>
+    <span class="section-tag">suy luận</span>
   </div>
   <div class="answer-flow">
     <div class="flow-input-grid">
@@ -307,7 +307,7 @@
       <p>Q-Former nhận question vectors và picture feature matrix, rồi tạo <strong>vector từ ngữ mang thông tin hình ảnh</strong> trước khi đưa vào ChatGLM.</p>
     </div>
   </div>
-  <div class="takeaway-strip compact"><div class="mini-label">Thông điệp</div><p>Answer testing là pipeline hỏi-đáp multimodal: mô hình dùng đặc trưng ảnh đã được Q-Former chuyển sang biểu diễn ngôn ngữ để ChatGLM sinh câu trả lời.</p></div>
+  <div class="takeaway-strip compact"><div class="mini-label">Thông điệp</div><p>Kiểm thử trả lời là quy trình hỏi-đáp đa phương thức: mô hình dùng đặc trưng ảnh đã được Q-Former chuyển sang biểu diễn ngôn ngữ để ChatGLM sinh câu trả lời.</p></div>
 </div>
 <div class="slide-footer"><span>LLMI-CDP · Wang et al. · Scientific Reports 2025</span><span>12 / 30</span></div>
 </div>
@@ -324,7 +324,7 @@
 <div class="pad">
   <div class="slide-header">
     <h2>Dataset nông nghiệp đa phương thức</h2>
-    <span class="section-tag">dataset</span>
+    <span class="section-tag">bộ dữ liệu</span>
   </div>
   <div class="col2" style="gap:24px">
     <div>
@@ -334,7 +334,7 @@
         <div style="text-align:center"><span class="num-big">15</span><span class="num-label">cây trồng</span></div>
       </div>
       <table class="tbl">
-        <thead><tr><th>Nhóm</th><th>Crop category</th><th>Disease category</th><th>Total sample</th></tr></thead>
+        <thead><tr><th>Nhóm</th><th>Nhóm cây trồng</th><th>Nhóm bệnh</th><th>Số mẫu</th></tr></thead>
         <tbody>
           <tr><td>Cereals</td><td>6</td><td>38</td><td>591</td></tr>
           <tr><td>Vegetables</td><td>7</td><td>43</td><td>623</td></tr>
@@ -347,7 +347,7 @@
     </div>
     <div>
       <div class="figure-stage" style="height:462px"><img src="assets/Fig4.png" alt="Overview of some datasets"/></div>
-      <div class="figure-caption">Fig. 4: ví dụ ảnh trong dataset gồm cereals, vegetables, fruit trees và pests.</div>
+      <div class="figure-caption">Fig. 4: ví dụ ảnh trong bộ dữ liệu gồm cây lương thực, rau, cây ăn quả và sâu hại.</div>
     </div>
   </div>
 </div>
@@ -357,13 +357,13 @@
 <div class="slide" id="s15">
 <div class="pad">
   <div class="slide-header">
-    <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Thiết lập huấn luyện và fine-tuning</h2>
-    <span class="section-tag">training setup</span>
+    <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Thiết lập huấn luyện và tinh chỉnh</h2>
+    <span class="section-tag">thiết lập huấn luyện</span>
   </div>
   <div class="image-layout narrow">
     <div>
       <div class="figure-stage" style="height:470px"><img src="assets/Fig5.png" alt="Fine-tuning training loss variation curve"/></div>
-      <div class="figure-caption">Fig. 5: đường cong loss trong quá trình fine-tuning.</div>
+      <div class="figure-caption">Fig. 5: đường cong lỗi huấn luyện trong quá trình tinh chỉnh.</div>
     </div>
     <div class="vstack">
       <div class="metric-grid">
@@ -373,7 +373,7 @@
       </div>
       <div class="card gold"><h3>Hyperparameters</h3><p>Learning rate 0.0001, batch size 4, repetition penalty 1.2, temperature 0.8, top-P 0.4 và top-K 100.</p></div>
       <div class="card teal"><h3>Fine-tune một phần</h3><p>Bài báo tinh chỉnh LoRA và một số tham số liên quan trong Q-Former; 4 layer ngẫu nhiên được fine-tune để giữ khả năng trả lời câu hỏi tổng quát.</p></div>
-      <div class="rbox"><div class="rbox-label">Phản biện</div><p>Paper không mô tả rõ train/validation/test split và cách chọn ảnh ngoài dataset, nên khả năng tái lập thực nghiệm còn hạn chế.</p></div>
+      <div class="rbox"><div class="rbox-label">Phản biện</div><p>Bài báo không mô tả rõ cách chia dữ liệu huấn luyện/kiểm định/kiểm tra và cách chọn ảnh ngoài bộ dữ liệu, nên khả năng tái lập thực nghiệm còn hạn chế.</p></div>
     </div>
   </div>
 </div>
@@ -384,7 +384,7 @@
 <div class="pad">
   <div class="slide-header">
     <h2>Các mô hình so sánh và tiêu chí đánh giá</h2>
-    <span class="section-tag">evaluation</span>
+    <span class="section-tag">đánh giá</span>
   </div>
   <div class="col2" style="gap:24px">
     <div class="card flat" style="min-height:430px">
@@ -395,7 +395,7 @@
       <ol class="num-list" style="margin-top:18px">
         <li><p><strong>Cognitive task:</strong> hỏi một lượt “ảnh này bị bệnh gì?” hoặc nhận diện sâu hại trong ảnh.</p></li>
         <li><p><strong>Question-answer:</strong> hội thoại nhiều lượt về triệu chứng, biện pháp phòng và kiểm soát bệnh.</p></li>
-        <li><p><strong>Nguồn ảnh:</strong> chọn từ dataset tự xây và một số ảnh không nằm trong dataset.</p></li>
+        <li><p><strong>Nguồn ảnh:</strong> chọn từ bộ dữ liệu tự xây và một số ảnh không nằm trong bộ dữ liệu.</p></li>
       </ol>
     </div>
     <div class="card flat" style="min-height:430px">
@@ -443,7 +443,7 @@
           <tr class="hi-row"><td>LLMI-CDP</td><td class="best">78.8</td><td class="best">75.4</td><td class="best">77.1</td></tr>
         </tbody>
       </table>
-      <div class="hbox"><div class="hbox-label">Đọc bảng</div><p>So với VisualGLM nền, LLMI-CDP tăng F1 từ 71.5 lên 77.1 điểm, cho thấy fine-tuning miền nông nghiệp tạo lợi ích thực sự.</p></div>
+      <div class="hbox"><div class="hbox-label">Đọc bảng</div><p>So với VisualGLM nền, LLMI-CDP tăng F1 từ 71.5 lên 77.1 điểm, cho thấy tinh chỉnh theo miền nông nghiệp tạo lợi ích thực sự.</p></div>
     </div>
     <div class="card flat">
       <h3>F1-score theo model</h3>
@@ -453,7 +453,7 @@
       <div class="bar-row"><span class="bar-label">VisCPM</span><span class="bar-track"><span class="bar-fill" style="width:51.7%"></span></span><span class="bar-val">51.7</span></div>
       <div class="bar-row"><span class="bar-label">MiniGPT4</span><span class="bar-track"><span class="bar-fill" style="width:36.6%"></span></span><span class="bar-val">36.6</span></div>
       <div class="bar-row"><span class="bar-label">Ziya-Visual</span><span class="bar-track"><span class="bar-fill" style="width:22.1%"></span></span><span class="bar-val">22.1</span></div>
-      <div class="rbox"><div class="rbox-label">Phản biện</div><p>Không có confidence interval hoặc kiểm định thống kê, nên kết luận nên dừng ở mức “LLMI-CDP tốt hơn trên thiết lập báo cáo”.</p></div>
+      <div class="rbox"><div class="rbox-label">Phản biện</div><p>Không có khoảng tin cậy hoặc kiểm định thống kê, nên kết luận nên dừng ở mức “LLMI-CDP tốt hơn trên thiết lập báo cáo”.</p></div>
     </div>
   </div>
 </div>
@@ -489,7 +489,7 @@
       <div class="bar-row"><span class="bar-label">Qwen-VL</span><span class="bar-track"><span class="bar-fill" style="width:47.9%"></span></span><span class="bar-val">47.9</span></div>
       <div class="bar-row"><span class="bar-label">Ziya-Visual</span><span class="bar-track"><span class="bar-fill" style="width:42.7%"></span></span><span class="bar-val">42.7</span></div>
       <div class="bar-row"><span class="bar-label">VisCPM</span><span class="bar-track"><span class="bar-fill" style="width:33.2%"></span></span><span class="bar-val">33.2</span></div>
-      <div class="takeaway-strip"><div class="mini-label">Giải thích</div><p>Sâu hại là miền mà MLLM tổng quát dễ thiếu tri thức trực quan; fine-tuning miền chuyên biệt tạo hiệu quả rõ.</p></div>
+      <div class="takeaway-strip"><div class="mini-label">Giải thích</div><p>Sâu hại là miền mà MLLM tổng quát dễ thiếu tri thức trực quan; tinh chỉnh theo miền chuyên biệt tạo hiệu quả rõ.</p></div>
     </div>
   </div>
 </div>
@@ -532,7 +532,7 @@
 <div class="pad-sm">
   <div class="slide-header">
     <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Fig. 7 · LLMI-CDP trả lời câu hỏi về phòng trừ bệnh</h2>
-    <span class="section-tag">question-answering</span>
+    <span class="section-tag">hỏi-đáp</span>
   </div>
   <div class="qa-input-strip">
     <strong>Input trong Fig. 7</strong>
@@ -551,7 +551,7 @@
 <div class="pad-sm">
   <div class="slide-header">
     <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Fig. 7 · Baseline: VisualGLM và Qwen-VL</h2>
-    <span class="section-tag">question-answering</span>
+    <span class="section-tag">hỏi-đáp</span>
   </div>
   <div class="figure-stage qa-figure short"><img src="assets/Fig7_baselines_1_high.png" alt="VisualGLM and Qwen-VL answers"/></div>
   <div class="figure-notes two">
@@ -566,11 +566,11 @@
 <div class="pad-sm">
   <div class="slide-header">
     <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Fig. 7 · Baseline: VisCPM, MiniGPT4, Ziya-Visual</h2>
-    <span class="section-tag">question-answering</span>
+    <span class="section-tag">hỏi-đáp</span>
   </div>
   <div class="figure-stage qa-figure"><img src="assets/Fig7_baselines_2_high.png" alt="VisCPM MiniGPT4 and Ziya-Visual answers"/></div>
   <div class="figure-notes three compact">
-    <div><strong>VisCPM</strong><span>Đưa ra nhiều gợi ý đúng hướng nhưng có phần chung chung, kéo cả pest control vào late blight.</span></div>
+    <div><strong>VisCPM</strong><span>Đưa ra nhiều gợi ý đúng hướng nhưng có phần chung chung, lẫn cả kiểm soát sâu hại vào bệnh mốc sương cà chua.</span></div>
     <div><strong>MiniGPT4</strong><span>Câu trả lời mạch lạc, nhưng chủ yếu là bộ biện pháp phổ thông cho bệnh nấm trên cà chua.</span></div>
     <div><strong>Ziya-Visual</strong><span>Ngắn và thiếu chi tiết hơn rõ rệt; chưa đủ cho tư vấn phòng trừ có thể hành động.</span></div>
   </div>
@@ -598,7 +598,7 @@
         </tbody>
       </table>
       <div class="hbox"><div class="hbox-label">Cách tính</div><p>Đánh giá QA kết hợp GPT-4 và người chấm theo tỷ lệ 3:7. LLMI-CDP đạt tổng điểm 89.1, cao hơn VisualGLM 3.2 điểm.</p></div>
-      <div class="rbox"><div class="rbox-label">Phản biện</div><p>Không rõ rubric chi tiết, số lượng câu hỏi và mức đồng thuận giữa người chấm, nên kết quả nên xem như bằng chứng hỗ trợ.</p></div>
+      <div class="rbox"><div class="rbox-label">Phản biện</div><p>Không rõ thang chấm chi tiết, số lượng câu hỏi và mức đồng thuận giữa người chấm, nên kết quả nên xem như bằng chứng hỗ trợ.</p></div>
     </div>
     <div>
       <div class="figure-stage" style="height:420px"><img src="assets/Fig8.png" alt="Comparison chart of model evaluation scores"/></div>
@@ -621,25 +621,25 @@
 <div class="pad">
   <div class="slide-header">
     <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Điểm mạnh và giới hạn của bài báo</h2>
-    <span class="section-tag">discussion</span>
+    <span class="section-tag">thảo luận</span>
   </div>
   <div class="col2" style="gap:18px">
     <div class="card teal" style="min-height:430px">
       <h3>Điểm mạnh</h3>
       <ol class="num-list">
         <li><p><strong>Đúng bài toán thực tế:</strong> nông dân cần hỏi-đáp và tư vấn, không chỉ nhãn phân lớp.</p></li>
-        <li><p><strong>Adaptation hợp lý:</strong> Q-Former + LoRA là lựa chọn tiết kiệm khi dữ liệu miền hẹp không quá lớn.</p></li>
-        <li><p><strong>So sánh nhiều baseline:</strong> đánh giá với năm MLLM phổ biến, có cả định lượng và ví dụ định tính.</p></li>
-        <li><p><strong>Kết quả nhất quán:</strong> LLMI-CDP đứng đầu trong disease recognition, pest recognition và QA score.</p></li>
+        <li><p><strong>Điều chỉnh mô hình hợp lý:</strong> Q-Former + LoRA là lựa chọn tiết kiệm khi dữ liệu chuyên ngành không quá lớn.</p></li>
+        <li><p><strong>So sánh nhiều mô hình nền:</strong> đánh giá với năm MLLM phổ biến, có cả số liệu định lượng và ví dụ định tính.</p></li>
+        <li><p><strong>Kết quả nhất quán:</strong> LLMI-CDP đứng đầu trong nhận diện bệnh cây, nhận diện sâu hại và điểm hỏi-đáp.</p></li>
       </ol>
     </div>
     <div class="card red" style="min-height:430px">
       <h3>Giới hạn</h3>
       <ol class="num-list">
-        <li><p><strong>Dataset nhỏ:</strong> 2,498 ảnh cho 141 category, trung bình số mẫu mỗi loại thấp.</p></li>
-        <li><p><strong>Thiếu chi tiết split:</strong> paper không mô tả đủ rõ cách tách train/test và ảnh ngoài dataset.</p></li>
-        <li><p><strong>Đánh giá QA chưa chuẩn hóa:</strong> thiếu rubric, số lượng mẫu và độ đồng thuận người chấm.</p></li>
-        <li><p><strong>Độ trễ suy luận:</strong> tác giả thừa nhận kiến trúc cascade còn khó đáp ứng real-time trên edge device.</p></li>
+        <li><p><strong>Bộ dữ liệu nhỏ:</strong> 2,498 ảnh cho 141 nhóm bệnh/sâu hại, trung bình số mẫu mỗi loại thấp.</p></li>
+        <li><p><strong>Thiếu chi tiết chia dữ liệu:</strong> bài báo không mô tả đủ rõ cách tách dữ liệu huấn luyện/kiểm tra và ảnh ngoài bộ dữ liệu.</p></li>
+        <li><p><strong>Đánh giá hỏi-đáp chưa chuẩn hóa:</strong> thiếu thang chấm chi tiết, số lượng mẫu và độ đồng thuận người chấm.</p></li>
+        <li><p><strong>Độ trễ suy luận:</strong> tác giả thừa nhận kiến trúc xử lý nhiều tầng còn khó đáp ứng thời gian thực trên thiết bị biên.</p></li>
       </ol>
     </div>
   </div>
@@ -652,29 +652,29 @@
 <div class="pad">
   <div class="slide-header">
     <h2>Câu hỏi phản biện và hướng phát triển</h2>
-    <span class="section-tag">future work</span>
+    <span class="section-tag">hướng phát triển</span>
   </div>
   <div class="col3">
     <div class="related-card">
       <div class="related-type">Câu hỏi 01</div>
       <div class="related-title">Khả năng tổng quát hóa</div>
-      <div class="related-row"><span>Vấn đề</span><p>Mô hình học trên dataset tiếng Trung tự xây, nhưng bệnh cây chịu ảnh hưởng bởi vùng địa lý, ánh sáng, giống cây và mùa vụ.</p></div>
-      <div class="related-gap"><span>Cần thêm</span><p>Test cross-region, cross-crop, ảnh thực địa chất lượng thấp và unseen disease categories.</p></div>
+      <div class="related-row"><span>Vấn đề</span><p>Mô hình học trên bộ dữ liệu tiếng Trung tự xây, nhưng bệnh cây chịu ảnh hưởng bởi vùng địa lý, ánh sáng, giống cây và mùa vụ.</p></div>
+      <div class="related-gap"><span>Cần thêm</span><p>Kiểm tra trên vùng khác, cây trồng khác, ảnh thực địa chất lượng thấp và các bệnh chưa từng có trong dữ liệu huấn luyện.</p></div>
     </div>
     <div class="related-card">
       <div class="related-type">Câu hỏi 02</div>
       <div class="related-title">Độ tin cậy tư vấn</div>
       <div class="related-row"><span>Vấn đề</span><p>Khuyến nghị thuốc và biện pháp phòng trừ có thể phụ thuộc quy định địa phương, liều lượng và giai đoạn sinh trưởng.</p></div>
-      <div class="related-gap"><span>Cần thêm</span><p>RAG với tài liệu nông học, kiểm chứng chuyên gia và cơ chế uncertainty/abstention.</p></div>
+      <div class="related-gap"><span>Cần thêm</span><p>Kết hợp tra cứu tài liệu nông học, kiểm chứng chuyên gia và cơ chế biết khi nào chưa chắc để từ chối trả lời.</p></div>
     </div>
     <div class="related-card">
       <div class="related-type">Hướng 03</div>
       <div class="related-title">Triển khai nhẹ hơn</div>
-      <div class="related-row"><span>Tác giả đề xuất</span><p>Dynamic multimodal alignment, incremental learning thích nghi miền và distillation sang mô hình nhỏ hơn.</p></div>
-      <div class="related-gap"><span>Mục tiêu</span><p>Giảm latency để dùng trên thiết bị biên trong môi trường nông nghiệp.</p></div>
+      <div class="related-row"><span>Tác giả đề xuất</span><p>Căn chỉnh ảnh-văn bản linh hoạt, học bổ sung dần khi gặp dữ liệu mới và chưng cất sang mô hình nhỏ hơn.</p></div>
+      <div class="related-gap"><span>Mục tiêu</span><p>Giảm độ trễ phản hồi để dùng trên thiết bị biên trong môi trường nông nghiệp.</p></div>
     </div>
   </div>
-  <div class="hbox"><div class="hbox-label">Câu hỏi seminar</div><p>Nếu phải triển khai thật, ta nên ưu tiên tăng accuracy nhận diện, tăng độ tin cậy tư vấn, hay giảm độ trễ? Ba mục tiêu này có thể xung đột.</p></div>
+  <div class="hbox"><div class="hbox-label">Câu hỏi thảo luận</div><p>Nếu phải triển khai thật, ta nên ưu tiên tăng độ chính xác nhận diện, tăng độ tin cậy tư vấn, hay giảm độ trễ? Ba mục tiêu này có thể xung đột.</p></div>
 </div>
 <div class="slide-footer"><span>LLMI-CDP · Wang et al. · Scientific Reports 2025</span><span>28 / 30</span></div>
 </div>
@@ -683,28 +683,28 @@
 <div class="pad">
   <div class="slide-header">
     <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Kết luận chính</h2>
-    <span class="section-tag">final summary</span>
+    <span class="section-tag">tổng kết</span>
   </div>
   <div class="final-summary">
     <div class="final-thesis">
       <h3>Thông điệp của bài báo</h3>
-      <p><strong>Fine-tuning một MLLM nền bằng dữ liệu bệnh cây và LoRA/Q-Former có thể cải thiện rõ rệt khả năng nhận diện và hỏi-đáp nông nghiệp.</strong></p>
-      <p class="mt2">LLMI-CDP cho thấy hướng đi khả thi để chuyển MLLM từ miền tổng quát sang trợ lý chuyên biệt cho smart agriculture.</p>
+      <p><strong>Tinh chỉnh một MLLM nền bằng dữ liệu bệnh cây và LoRA/Q-Former có thể cải thiện rõ rệt khả năng nhận diện và hỏi-đáp nông nghiệp.</strong></p>
+      <p class="mt2">LLMI-CDP cho thấy hướng đi khả thi để chuyển MLLM từ miền tổng quát sang trợ lý chuyên biệt cho nông nghiệp thông minh.</p>
       <div class="final-proof">
         <div><span>77.1</span><p>F1 nhận diện bệnh cây</p></div>
         <div><span>86.5</span><p>F1 nhận diện sâu hại</p></div>
         <div><span>89.1</span><p>Tổng điểm hỏi-đáp</p></div>
-        <div><span>2,498</span><p>ảnh trong dataset</p></div>
+        <div><span>2,498</span><p>ảnh trong bộ dữ liệu</p></div>
       </div>
     </div>
     <div>
       <div class="final-pillars">
         <div class="final-pillar"><h3>01 · Bài toán</h3><p>Đi từ phân lớp ảnh sang hệ thống đối thoại có thể nhận diện, mô tả và đề xuất biện pháp phòng trừ.</p></div>
-        <div class="final-pillar"><h3>02 · Kiến trúc</h3><p>VisualGLM/ChatGLM làm nền, Q-Former căn chỉnh modality, LoRA tinh chỉnh miền hẹp.</p></div>
+        <div class="final-pillar"><h3>02 · Kiến trúc</h3><p>VisualGLM/ChatGLM làm nền, Q-Former căn chỉnh ảnh-ngôn ngữ, LoRA tinh chỉnh miền hẹp.</p></div>
         <div class="final-pillar"><h3>03 · Thực nghiệm</h3><p>Vượt VisualGLM, Qwen-VL, VisCPM, MiniGPT4 và Ziya-Visual trong các bảng báo cáo.</p></div>
-        <div class="final-pillar"><h3>04 · Phản biện</h3><p>Cần thêm benchmark tái lập, dữ liệu đa vùng, rubric QA rõ và tối ưu latency cho thiết bị biên.</p></div>
+        <div class="final-pillar"><h3>04 · Phản biện</h3><p>Cần thêm bộ kiểm thử có thể tái lập, dữ liệu đa vùng, thang chấm hỏi-đáp rõ và tối ưu độ trễ cho thiết bị biên.</p></div>
       </div>
-      <div class="rbox"><div class="rbox-label">Phản biện</div><p>Kết quả thuyết phục như một proof-of-concept cho MLLM nông nghiệp, nhưng chưa đủ để kết luận hệ thống an toàn cho tư vấn canh tác thực tế nếu thiếu kiểm chứng chuyên gia và dữ liệu ngoài phân phối.</p></div>
+      <div class="rbox"><div class="rbox-label">Phản biện</div><p>Kết quả thuyết phục như một bản chứng minh ý tưởng cho MLLM nông nghiệp, nhưng chưa đủ để kết luận hệ thống an toàn cho tư vấn canh tác thực tế nếu thiếu kiểm chứng chuyên gia và dữ liệu ngoài phân phối.</p></div>
     </div>
   </div>
 </div>
@@ -717,15 +717,15 @@
     <span class="conf-badge">Scientific Reports 2025</span>
   </div>
   <h1 style="font-family:var(--sans);font-weight:700;text-align:center;max-width:100%;font-size:2.35em">Cảm ơn đã lắng nghe</h1>
-  <p class="subtitle" style="margin:14px auto 0;max-width:680px;text-align:center">Mời đặt câu hỏi và thảo luận về LLMI-CDP, fine-tuning MLLM cho nông nghiệp, và độ tin cậy của tư vấn tự động.</p>
+  <p class="subtitle" style="margin:14px auto 0;max-width:680px;text-align:center">Mời đặt câu hỏi và thảo luận về LLMI-CDP, tinh chỉnh MLLM cho nông nghiệp, và độ tin cậy của tư vấn tự động.</p>
   <div class="divider-line" style="margin:28px auto"></div>
   <div style="display:flex;gap:32px;justify-content:center;flex-wrap:wrap">
     <div class="card gold" style="min-width:300px;padding:20px 24px;text-align:left"><h3>Bài báo</h3><p style="font-family:var(--mono);font-size:.75em;margin-top:6px">doi.org/10.1038/s41598-025-01908-0</p></div>
     <div class="card teal" style="min-width:300px;padding:20px 24px;text-align:left"><h3>Mô hình</h3><p style="font-family:var(--mono);font-size:.75em;margin-top:6px">LLMI-CDP · VisualGLM · Q-Former · LoRA</p></div>
-    <div class="card flat" style="min-width:300px;padding:20px 24px;text-align:left"><h3>Chủ đề</h3><p style="font-family:var(--mono);font-size:.75em;margin-top:6px">crop disease · pest recognition · multimodal QA</p></div>
+    <div class="card flat" style="min-width:300px;padding:20px 24px;text-align:left"><h3>Chủ đề</h3><p style="font-family:var(--mono);font-size:.75em;margin-top:6px">bệnh cây · nhận diện sâu hại · hỏi-đáp đa phương thức</p></div>
   </div>
   <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:36px">
-    <span class="pill">MLLM</span><span class="pill">Smart Agriculture</span><span class="pill">Crop Disease</span><span class="pill">Pest Recognition</span><span class="pill">LoRA</span><span class="pill">Q-Former</span>
+    <span class="pill">MLLM</span><span class="pill">Nông nghiệp thông minh</span><span class="pill">Bệnh cây</span><span class="pill">Nhận diện sâu hại</span><span class="pill">LoRA</span><span class="pill">Q-Former</span>
   </div>
 </div>
 </div>
