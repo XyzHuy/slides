@@ -242,7 +242,7 @@
     <div class="vstack">
       <div class="eq-box">W = W<sub>pm</sub> + tW<sub>LoRA</sub><div class="desc">Trọng số sau fine-tune bằng trọng số frozen cộng cập nhật low-rank.</div></div>
       <div class="card gold"><h3>Pha 1 · Học ảnh</h3><p>Ảnh được encode thành feature vectors, sau đó LoRA tối ưu chất lượng đặc trưng mà không retrain toàn bộ image encoder.</p></div>
-      <div class="card teal"><h3>Pha 2 · Căn chỉnh ảnh-văn bản</h3><p>Q-Former học so sánh và căn chỉnh feature ảnh với vector mô tả, rồi đưa vào ChatGLM.</p></div>
+      <div class="card teal"><h3>Pha 2 · LoRA trên ChatGLM</h3><p>LoRA được dùng để đưa tri thức chuyên ngành nông nghiệp vào ChatGLM, giúp mô hình hiểu ngữ nghĩa bệnh/sâu hại cây trồng, trả lời câu hỏi và đề xuất phác đồ phòng trừ phù hợp.</p></div>
       <div class="card red"><h3>Lý do chọn LoRA</h3><p>Bài báo cho rằng Prefix Tuning và P-Tuning v2 không đạt kết quả tốt trong thiết lập này; LoRA ổn định và tiết kiệm hơn.</p></div>
     </div>
     <div>
@@ -260,24 +260,54 @@
     <h2 style="font-family:var(--sans);font-size:1.42em;font-weight:700">Luồng xử lý trong answer testing</h2>
     <span class="section-tag">inference</span>
   </div>
-  <div class="col3">
-    <div class="card gold" style="min-height:360px">
-      <h3>01 · Encode ảnh</h3>
-      <p>Ảnh được chia thành các patch 14 × 14. Mỗi patch tạo một vector đặc trưng, sau đó self-attention và feed-forward residual mapping tạo ma trận ảnh.</p>
-      <div class="tag-row"><span class="tag hi">J = [j0 ... j196]</span><span class="tag">visual features</span></div>
+  <div class="answer-flow">
+    <div class="flow-input-grid">
+      <div class="flow-lane image">
+        <div class="lane-label">Image path</div>
+        <div class="flow-node input">Ảnh đầu vào</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">Image encoder</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node output">J = [j0 ... j196]<span>image feature matrix</span></div>
+      </div>
+      <div class="flow-lane question">
+        <div class="lane-label">Question path</div>
+        <div class="flow-node input">Câu hỏi</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">Text encoding</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node output">Question vectors<span>queries for image information</span></div>
+      </div>
     </div>
-    <div class="card teal" style="min-height:360px">
-      <h3>02 · Encode câu hỏi</h3>
-      <p>Câu hỏi hoặc mô tả ảnh được chuyển thành text vectors, chuẩn hóa kích thước để so sánh và cross-attention với đặc trưng ảnh.</p>
-      <div class="tag-row"><span class="tag hi">H = [h1 ... h196]</span><span class="tag">text features</span></div>
-    </div>
-    <div class="card navy" style="min-height:360px">
-      <h3>03 · Sinh câu trả lời</h3>
-      <p>Q-Former trích vector ảnh-văn bản liên quan nhất. Fully connected layer điều chỉnh chiều vector, rồi ChatGLM sinh câu trả lời bằng ngôn ngữ tự nhiên.</p>
-      <div class="tag-row"><span class="tag hi">image + question</span><span class="tag">diagnosis</span><span class="tag">control advice</span></div>
+    <div class="flow-main">
+      <div class="flow-input-bundle"><span>Inputs to Q-Former</span><strong>Question vectors + picture feature matrix</strong></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node qformer">Q-Former<span>trích vector thông tin ảnh-văn bản</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node key">Vector từ ngữ mang thông tin hình ảnh</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">Fully connected layer<span>đổi chiều ma trận</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">ChatGLM</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node output">Câu trả lời</div>
     </div>
   </div>
-  <div class="takeaway-strip"><div class="mini-label">Thông điệp</div><p>Đây là pipeline hỏi-đáp multimodal: phân loại chỉ là một phần, còn đầu ra cuối cùng là câu trả lời giàu ngữ cảnh cho người dùng nông nghiệp.</p></div>
+  <div class="answer-notes">
+    <div class="card gold">
+      <h3>01 · Image feature matrix</h3>
+      <p>Ảnh được encode thành các vector đặc trưng jk, sau đó gom thành ma trận ảnh J = [j0 ... j196].</p>
+    </div>
+    <div class="card teal">
+      <h3>02 · Question vectors</h3>
+      <p>Câu hỏi dùng để truy vấn thông tin từ ảnh, được encode thành các question vectors.</p>
+    </div>
+    <div class="card navy">
+      <h3>03 · Đầu ra Q-Former</h3>
+      <p>Q-Former nhận question vectors và picture feature matrix, rồi tạo <strong>vector từ ngữ mang thông tin hình ảnh</strong> trước khi đưa vào ChatGLM.</p>
+    </div>
+  </div>
+  <div class="takeaway-strip compact"><div class="mini-label">Thông điệp</div><p>Answer testing là pipeline hỏi-đáp multimodal: mô hình dùng đặc trưng ảnh đã được Q-Former chuyển sang biểu diễn ngôn ngữ để ChatGLM sinh câu trả lời.</p></div>
 </div>
 <div class="slide-footer"><span>LLMI-CDP · Wang et al. · Scientific Reports 2025</span><span>12 / 30</span></div>
 </div>
