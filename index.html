@@ -44,7 +44,7 @@
   <ul class="agenda-list">
     <li><div><div class="ag-title">Động lực nghiên cứu</div><div class="ag-desc">Vì sao MLLM tổng quát dễ sai khi phải nhận diện bệnh/sâu hại và đưa ra khuyến nghị nông nghiệp cụ thể.</div></div></li>
     <li><div><div class="ag-title">Nghiên cứu liên quan</div><div class="ag-desc">LLM, mô hình ảnh-ngôn ngữ, BLIP-2/Q-Former và tinh chỉnh tiết kiệm tham số bằng LoRA.</div></div></li>
-    <li><div><div class="ag-title">Mô hình LLMI-CDP</div><div class="ag-desc">Năm thành phần: ghép ảnh-văn bản, mã hóa ảnh, mã hóa văn bản, Q-Former, tinh chỉnh LoRA và kiểm thử trả lời.</div></div></li>
+    <li><div><div class="ag-title">Mô hình LLMI-CDP</div><div class="ag-desc">Năm thành phần: Image-Text matching, Image encoder, Text encoder, Q-Former, tinh chỉnh LoRA và kiểm thử trả lời.</div></div></li>
     <li><div><div class="ag-title">Dữ liệu và thiết lập thực nghiệm</div><div class="ag-desc">Bộ dữ liệu tiếng Trung gồm 2,498 ảnh màu, 141 loại bệnh/sâu hại, 15 cây trồng và 32 nhóm sâu hại.</div></div></li>
     <li><div><div class="ag-title">Kết quả</div><div class="ag-desc">So sánh với VisualGLM, Qwen-VL, VisCPM, MiniGPT4, Ziya-Visual trên nhận diện và hỏi-đáp.</div></div></li>
     <li><div><div class="ag-title">Thảo luận phản biện</div><div class="ag-desc">Điểm mạnh, giới hạn đánh giá, rủi ro dữ liệu, độ trễ suy luận và hướng cải tiến.</div></div></li>
@@ -214,9 +214,9 @@
     <div class="vstack">
       <div class="card flat"><h3>Năm thành phần chính</h3>
         <ol class="num-list">
-          <li><p><strong>Ghép ảnh-văn bản:</strong> học xem cặp ảnh-văn bản có khớp hay không.</p></li>
-          <li><p><strong>Mã hóa ảnh:</strong> biến ảnh thành ma trận đặc trưng thị giác.</p></li>
-          <li><p><strong>Mã hóa văn bản:</strong> biến mô tả/câu hỏi thành biểu diễn ngữ nghĩa.</p></li>
+          <li><p><strong>Image-text matching:</strong> học xem cặp ảnh-văn bản có khớp hay không.</p></li>
+          <li><p><strong>Image encoder:</strong> biến ảnh thành ma trận đặc trưng thị giác.</p></li>
+          <li><p><strong>Text encoder:</strong> biến mô tả/câu hỏi thành biểu diễn ngữ nghĩa.</p></li>
           <li><p><strong>Tinh chỉnh LoRA:</strong> cập nhật các ma trận hạng thấp thay vì toàn bộ mô hình.</p></li>
           <li><p><strong>Kiểm thử trả lời:</strong> sinh câu trả lời từ ảnh + câu hỏi sau khi căn chỉnh ảnh-ngôn ngữ.</p></li>
         </ol>
@@ -343,7 +343,7 @@
           <tr class="hi-row"><td>Total</td><td>15</td><td>141</td><td>2,498</td></tr>
         </tbody>
       </table>
-      <div class="hbox"><div class="hbox-label">Annotation</div><p>Mỗi ảnh được gắn tên bệnh/sâu hại và sinh thêm 3-4 câu hỏi liên quan đến triệu chứng, đặc điểm bệnh và biện pháp phòng trừ.</p></div>
+      <div class="hbox"><div class="hbox-label">Annotation</div><p>Mỗi ảnh được gắn tên bệnh/sâu hại và 3-4 câu hỏi liên quan đến triệu chứng, đặc điểm bệnh và biện pháp phòng trừ.</p></div>
     </div>
     <div>
       <div class="figure-stage" style="height:462px"><img src="assets/Fig4.png" alt="Overview of some datasets"/></div>
